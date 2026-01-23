@@ -12,20 +12,25 @@ class Solution {
             count1[word1[i]] = (count1[word1[i]]??0) +1;
             count2[word2[i]] = (count2[word2[i]]??0) +1;
         }
-        final list1  = count1.values.toList();
-        final list2  = count2.values.toList();
-        Map<int,int> map1 = {};
-        Map<int,int> map2 = {};
-        for(int i=0;i<list1.length;i++){
-            map1[list1[i]] = (map1[list1[i]]??0) +1;
-            map2[list2[i]] = (map2[list2[i]]??0) +1;
-        }
-        for(int i=0;i<list1.length;i++){
-            if(map1[list1[i]] != map2[list1[i]])
-            {
-                return false;
-            }
-        }
+        final list1  = count1.values.toList()..sort();
+        final list2  = count2.values.toList()..sort();
+          for (int i = 0; i < list1.length; i++) {
+    if (list1[i] != list2[i]) {
+      return false;
+    }
+  }
+        // Map<int,int> map1 = {};
+        // Map<int,int> map2 = {};
+        // for(int i=0;i<list1.length;i++){
+        //     map1[list1[i]] = (map1[list1[i]]??0) +1;
+        //     map2[list2[i]] = (map2[list2[i]]??0) +1;
+        // }
+        // for(int i=0;i<list1.length;i++){
+        //     if(map1[list1[i]] != map2[list1[i]])
+        //     {
+        //         return false;
+        //     }
+        // }
 
         return true;
 
