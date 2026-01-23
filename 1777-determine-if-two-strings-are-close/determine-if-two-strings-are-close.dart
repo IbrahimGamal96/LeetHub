@@ -1,42 +1,35 @@
 class Solution {
   bool closeStrings(String word1, String word2) {
+List<int> freq1 = List.filled(26, 0);
+    List<int> freq2 = List.filled(26, 0);
 
-    if(word1.length==word2.length){
-        Set<String> set1 = word1.split('').toList().toSet();
-        Set<String> set2 = word2.split('').toList().toSet();
-        bool sameChar = set1.difference(set2).length>0?false:true;
-        if(sameChar == false)return false;
-        Map<String,int> count1 = {};
-        Map<String,int> count2 = {};
-        for(int i=0;i<word1.length;i++){
-            count1[word1[i]] = (count1[word1[i]]??0) +1;
-            count2[word2[i]] = (count2[word2[i]]??0) +1;
-        }
-        final list1  = count1.values.toList()..sort();
-        final list2  = count2.values.toList()..sort();
-          for (int i = 0; i < list1.length; i++) {
-    if (list1[i] != list2[i]) {
-      return false;
+   
+    for (int i = 0; i < word1.length; i++) {
+      freq1[word1.codeUnitAt(i) - 'a'.codeUnitAt(0)]++;
     }
-  }
-        // Map<int,int> map1 = {};
-        // Map<int,int> map2 = {};
-        // for(int i=0;i<list1.length;i++){
-        //     map1[list1[i]] = (map1[list1[i]]??0) +1;
-        //     map2[list2[i]] = (map2[list2[i]]??0) +1;
-        // }
-        // for(int i=0;i<list1.length;i++){
-        //     if(map1[list1[i]] != map2[list1[i]])
-        //     {
-        //         return false;
-        //     }
-        // }
 
-        return true;
+ 
+    for (int i = 0; i < word2.length; i++) {
+      freq2[word2.codeUnitAt(i) - 'a'.codeUnitAt(0)]++;
+    }
 
-    }else{
+ 
+    for (int i = 0; i < 26; i++) {
+      if ((freq1[i] > 0 && freq2[i] == 0) || (freq2[i] > 0 && freq1[i] == 0)) {
         return false;
+      }
     }
+
+    freq1.sort();
+    freq2.sort();
+
+    for (int i = 0; i < 26; i++) {
+      if (freq1[i] != freq2[i]) {
+        return false;
+      }
+    }
+
+    return true;
     
   }
 }
