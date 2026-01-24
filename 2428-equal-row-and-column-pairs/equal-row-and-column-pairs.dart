@@ -1,20 +1,30 @@
+import 'dart:collection';
 class Solution {
   int equalPairs(List<List<int>> grid) {
-    int count =0;
-    int n =grid.length;
-    for(int i=0;i<n;i++){
-        for(int j=0;j<n;j++){
-            bool isEqual = true;
-            for(int k = 0;k<n;k++){
-                if(grid[i][k]!=grid[k][j]){
-                isEqual = false;
-                }
-            }
-            if(isEqual){
-                count++;
-            }
+    int pair = 0;
+    int temp = 0;
+    int row = 0;
+
+    while (temp <= grid.length - 1) {
+      final HashMap<int, int> map = HashMap<int, int>();
+      for (int j = 0; j < grid.length; j++) {
+        map[j] = grid[row][j];
+      }
+      for (int i = 0; i < grid.length; i++) {
+        int current = 0;
+        for (int k = 0; k < grid.length; k++) {
+          if (map[k] != grid[k][i]) {
+            current = 0;
+            break;
+          } else {
+            current = 1;
+          }
         }
+        pair += current;
+      }
+      row++;
+      temp++;
     }
-    return count;
+    return pair;
   }
 }
