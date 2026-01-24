@@ -12,10 +12,12 @@ class Solution {
     }
     
     for(int i=0;i<n;i++){
+        List<int> listR = grid[i];
         for(int j=0;j<n;j++){
             bool isEqual = true;
+            List<int> listC = gridCo[j];
             for(int k = 0;k<n;k++){
-                if(grid[i][k]!=gridCo[j][k]){
+                if(listR[k]!=listC[k]){
                 isEqual = false;
                 }
             }
