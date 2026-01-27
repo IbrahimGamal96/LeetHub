@@ -1,13 +1,19 @@
 class Solution {
   String removeStars(String s) {
-    List<String> stack = [];
-    for (int i = 0; i < s.length; i++) {
-      if (s[i] != '*') {
-        stack.add(s[i]);
-      } else if (stack.isNotEmpty) {
-        stack.removeLast();
-      }
+    int startCount = 0;
+    String result = "";
+
+    for(int i=s.length-1;i>=0;i--){
+        if(s[i]=="*"){
+            startCount++;
+        }else{
+            if(startCount<1){
+                result= s[i] + result;
+            }else{
+                startCount--;
+            }
+        }
     }
-    return stack.join();
+    return result;
   }
 }
