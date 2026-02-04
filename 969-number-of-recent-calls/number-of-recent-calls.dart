@@ -11,6 +11,9 @@ late List<int> nums;
     for(int i=0;i<nums.length;i++){
         if(nums[i]>=f){
             count++;
+        }else{
+            nums.removeAt(i);
+            i--;
         }
     }
     return count;
